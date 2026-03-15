@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Periodic Table of Elements — explore all 118 elements with detailed properties, electron configurations, and beautiful visualizations.">
+    <title>Interactive Periodic Table</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header id="app-header">
+        <div class="header-left">
+            <h1 id="app-title">
+                <span class="title-icon">⚛</span>
+                Periodic Table
+            </h1>
+            <p class="subtitle">Explore all 118 elements</p>
+        </div>
+        <div class="header-center">
+            <div id="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="search-input" placeholder="Search by name, symbol, or number..." autocomplete="off">
+                <kbd class="search-kbd">Ctrl+K</kbd>
+            </div>
+        </div>
+        <div class="header-right">
+            <div id="temp-control">
+                <label for="temp-slider">
+                    <span class="temp-label">Temperature</span>
+                    <span id="temp-value" class="temp-value-display">298 K</span>
+                </label>
+                <input type="range" id="temp-slider" min="0" max="6000" value="298" step="1">
+                <div class="state-legend">
+                    <span class="legend-item solid-legend">● Solid</span>
+                    <span class="legend-item liquid-legend">● Liquid</span>
+                    <span class="legend-item gas-legend">● Gas</span>
+                    <span class="legend-item unknown-legend">● Unknown</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav id="category-filters">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="alkali-metal">Alkali Metals</button>
+        <button class="filter-btn" data-category="alkaline-earth">Alkaline Earth</button>
+        <button class="filter-btn" data-category="transition-metal">Transition Metals</button>
+        <button class="filter-btn" data-category="post-transition">Post-Transition</button>
+        <button class="filter-btn" data-category="metalloid">Metalloids</button>
+        <button class="filter-btn" data-category="nonmetal">Nonmetals</button>
+        <button class="filter-btn" data-category="halogen">Halogens</button>
+        <button class="filter-btn" data-category="noble-gas">Noble Gases</button>
+        <button class="filter-btn" data-category="lanthanide">Lanthanides</button>
+        <button class="filter-btn" data-category="actinide">Actinides</button>
+    </nav>
+
+    <main id="table-container">
+        <div id="periodic-table"></div>
+        <div id="lanthanide-label" class="series-label">Lanthanides</div>
+        <div id="lanthanide-row" class="series-row"></div>
+        <div id="actinide-label" class="series-label">Actinides</div>
+        <div id="actinide-row" class="series-row"></div>
+    </main>
+
+    <aside id="detail-panel" class="panel-hidden">
+        <button id="panel-close" aria-label="Close detail panel">✕</button>
+        <div id="panel-content">
+            <div id="panel-header">
+                <span id="panel-number" class="panel-atomic-number"></span>
+                <span id="panel-symbol" class="panel-symbol"></span>
+                <span id="panel-name" class="panel-name"></span>
+                <span id="panel-mass" class="panel-mass"></span>
+            </div>
+            <div id="panel-category-badge"></div>
+            <p id="panel-description" class="panel-description"></p>
+            <div id="panel-electron-config" class="panel-section">
+                <h3>Electron Configuration</h3>
+                <code id="panel-config-text"></code>
+            </div>
+            <div id="panel-properties" class="panel-section">
+                <h3>Physical Properties</h3>
+                <div id="panel-props-grid"></div>
+            </div>
+            <div id="panel-discovery" class="panel-section">
+                <h3>Discovery</h3>
+                <p id="panel-discovery-text"></p>
+            </div>
+        </div>
+    </aside>
+
+    <div id="overlay" class="overlay-hidden"></div>
+
+    <script src="elements.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
